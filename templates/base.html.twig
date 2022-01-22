@@ -35,21 +35,20 @@
 					<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
 						{% if is_granted("ROLE_ADMIN") %}
 							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('user_index')}}">Admin</a>
+							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('listpanier')}}">Panier({{app.request.cookies.get('panierarticle')}})</a>
 							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('app_logout')}}">Deconnexion</a>
 						{% elseif is_granted("ROLE_STOCK") %}
 							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('stock')}}">Stock</a>
+							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('listpanier')}}">Panier({{app.request.cookies.get('panierarticle')}})</a>
 							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('app_logout')}}">Deconnexion</a>
 						{% elseif is_granted("ROLE_USER") %}
-							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('listpanier')}}">Panier</a>
+							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('listpanier')}}">Panier({{app.request.cookies.get('panierarticle')}})</a>
+							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('show_profile', {'id': app.user.id})}}">profile</a>
 							<a class="me-3 py-2 text-dark text-decoration-none" href="{{path('app_logout')}}">Deconnexion</a>
 						{% else %}
 							<a class="py-2 text-dark text-decoration-none" href="{{path('app_login')}}">Connexion</a>
 						{% endif %}
 					</nav>
-				</div>
-
-				<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-					<h1 class="display-4 fw-normal">Nos produits</h1>
 				</div>
 			</header>
 

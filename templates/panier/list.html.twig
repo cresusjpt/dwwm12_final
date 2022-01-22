@@ -28,29 +28,29 @@
 						</thead>
 						<tbody>
 							{% set total = 0 %}
-							{% for produit in produits %}
+							{% for det in detproduits %}
 								<tr>
 									<td><img src="https://dummyimage.com/50x50/55595c/fff"/>
 									</td>
-									<td>{{produit.nom}}</td>
-									<td>{{produit.prix}}</td>
+									<td>{{det.detailProduit.nom}}</td>
+									<td>{{det.detailProduit.prix}}</td>
 									<td>
-										{% if produit.QteStock >0 %}
+										{% if det.detailProduit.QteStock >0 %}
 											En Stock
 										{% else %}
 											Rupture
 										{% endif %}
 									</td>
-									<td><input class="form-control" type="number" min="1" step="1" value="{{produit.QteStock}}"/></td>
-									<td class="text-right">{{produit.prix * produit.QteStock}}
+									<td><input class="form-control" type="number" min="1" step="1" value="{{det.qte}}"/></td>
+									<td class="text-right">{{det.detailProduit.prix * det.qte}}
 										€</td>
 									<td class="text-right">
-										<button class="btn btn-sm btn-danger">
+										<a href="{{path('retirerpanier', {'id': det.detailProduit.id})}}" class="btn btn-sm btn-danger">
 											<i class="fa fa-trash"></i>
-										</button>
+										</a>
 									</td>
 								</tr>
-								{% set total = total + produit.prix * produit.QteStock %}
+								{% set total = total + det.detailProduit.prix * det.qte %}
 							{% endfor %}
 
 							<tr>
@@ -74,7 +74,7 @@
 			<div class="col mb-2">
 				<div class="row">
 					<div class="col-sm-12  col-md-6">
-						<button class="btn btn-block btn-light">Retour aux produits</button>
+						<a href="{{path('home')}}" class="btn btn-block btn-light">Retour aux produits</a>
 					</div>
 					<div class="col-sm-12 col-md-6 text-right">
 						<a href="{{path('stripe')}}" class="btn btn-lg btn-block btn-success text-uppercase">Valider</a>

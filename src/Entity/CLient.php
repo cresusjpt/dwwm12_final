@@ -49,6 +49,11 @@ class CLient
      */
     private $passer;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cLients")
+     */
+    private $etrede;
+
     public function __construct()
     {
         $this->passer = new ArrayCollection();
@@ -152,5 +157,17 @@ class CLient
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getEtrede(): ?User
+    {
+        return $this->etrede;
+    }
+
+    public function setEtrede(?User $etrede): self
+    {
+        $this->etrede = $etrede;
+
+        return $this;
     }
 }

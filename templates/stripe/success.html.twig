@@ -4,20 +4,41 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
+	<h3>Commande N:{{commande.id}}</h3>
+	<h5>
+		Crée le
+		{{commande.createdAt|date }}</h5>
+	{# <h5>Par
+				{{client.nom}}
+				{{client.prenom}}
+				{{client.adresse}}</h5> #}
+	<h5>Info utilisateur :
+		{{app.user.email}}</h5>
 
-	<div class="example-wrapper">
-		<h1>SUCCESS FROM STRIPE PAYMENT! ✅</h1>
-	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom produit</th>
+				<th>Quantité commandée</th>
+				<th>Prix</th>
+				<th>Sous total</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for detail in details %}
+				<tr>
+					<a href="{{path('home')}}">
+						<td>{{ detail.detailProduit.nom }}</td>
+					</a>
+					<td>{{ detail.qte }}</td>
+					<td>{{ detail.detailProduit.prix }}</td>
+					<td>{{ detail.qte * detail.detailProduit.prix }}</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">Aucune commande trouvée</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

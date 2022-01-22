@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block body %}
+	<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+		<h1 class="display-4 fw-normal">Nos produits</h1>
+	</div>
 	<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
 		{% for produit in produits %}
@@ -13,17 +16,18 @@
 						<h4 class="my-0 fw-normal">{{produit.nom}}</h4>
 					</div>
 					<div class="card-body">
-						<h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small>
-						</h1>
-						<img src="{{('@images/')~ produit.image }}" alt="Logo">
-						<p>{{produit.description}}</p>
-						<p>{{produit.taille}}</p>
-						<p>{{produit.color}}</p>
-						<p>{{produit.prix}}</p>
-						<p>{{produit.qteStock}}</p>
-						{% if is_granted("ROLE_USER") %}
-							<a href="{{ path('panier', {'id': produit.id}) }}" class="w-100 btn btn-lg btn-outline-primary">Ajouter au panier</a>
-						{% endif %}
+						<p class="card-title pricing-card-title card-text">{{produit.prix}}</p>
+						<div class="card img-fluid" style="width:500px">
+							<img class="card-img-top" src="{{('images/')~ produit.image }}" alt="image produit" style="width:100%">
+							<p class="card-text">{{produit.description}}</p>
+							<p class="card-text">{{produit.taille}}</p>
+							<p class="card-text">{{produit.color}}</p>
+							<p class="card-text">{{produit.qteStock}}</p>
+							{% if is_granted("ROLE_USER") %}
+								<a href="{{ path('panier', {'id': produit.id}) }}" class="w-100 btn btn-lg btn-outline-primary">Ajouter au panier</a>
+							{% endif %}
+						</div>
+
 					</div>
 				</div>
 			</div>

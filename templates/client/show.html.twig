@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile Utilisateur
+{% endblock %}
+
+{% block body %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Adresse</th>
+				<th>Ville</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ client.id }}</td>
+				<td>{{ client.nom }}</td>
+				<td>{{ client.prenom }}</td>
+				<td>{{ client.adresse }}</td>
+				<td>{{ client.ville }}</td>
+				<td>
+					<a href="{{ path('client', {'id': client.id}) }}" class="btn">Modifier</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>{% endblock %}
